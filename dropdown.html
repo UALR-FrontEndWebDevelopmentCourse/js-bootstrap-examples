@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Bootstrap Dropdown Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Style to reverse the caret icon from pointing downwards to upwards */
+        .caret.caret-up {
+            border-top-width: 0;
+            border-bottom: 4px solid #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Dropdown Examples</h2>
+    <h3>Events</h3>
+    <p>The <strong>show.bs.dropdown</strong> event occurs when the dropdown is about to be shown.</p>
+    <p>The <strong>shown.bs.dropdown</strong> event occurs when the dropdown is fully shown.</p>
+    <p>The <strong>hide.bs.dropdown</strong> event occurs when the dropdown is about to be hidden.</p>
+    <p>The <strong>hidden.bs.dropdown</strong> event occurs when the dropdown is fully hidden.</p>
+    <div id="event_dropdown" class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Toggle this
+            Dropdown
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+        </ul>
+    </div>
+    <h3>Get the element that triggered the dropdown</h3>
+    <p>Click on the Dropdown button below. <strong>event.relatedTarget</strong> returns the element which triggered the
+        dropdown.</p>
+    <div id="get_text_dropdown" class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Dropdown Example
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+        </ul>
+    </div>
+    <h3>Change the caret symbol on dropdown</h3>
+    <div id="caret_dropdown" class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+        </ul>
+    </div>
+    <h3>Update text with option selected</h3>
+    <div id="select_item_dropdown" class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+            Number <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">1</a></li>
+            <li><a class="dropdown-item" href="#">2</a></li>
+            <li><a class="dropdown-item" href="#">3</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        // Events
+
+        $('#event_dropdown').on('show.bs.dropdown', function () {
+            alert('The dropdown is about to be shown.');
+        });
+        $('#event_dropdown').on('shown.bs.dropdown', function () {
+            alert('The dropdown is now fully shown.');
+        });
+        $('#event_dropdown').on('hide.bs.dropdown', function (e) {
+            alert('The dropdown is about to be hidden.');
+        });
+        $('#event_dropdown').on('hidden.bs.dropdown', function () {
+            alert('The dropdown is now fully hidden.');
+        });
+
+        // Get text
+
+        $("#get_text_dropdown").on("show.bs.dropdown", function (event) {
+            var x = $(event.relatedTarget).text(); // Get the button text
+            alert("You clicked on: " + x);
+        });
+
+        // Change caret symbol
+
+        $("#caret_dropdown").on("hide.bs.dropdown", function () {
+            $("#caret_dropdown .btn").html('Dropdown <span class="caret"></span>');
+        });
+        $("#caret_dropdown").on("show.bs.dropdown", function () {
+            $("#caret_dropdown .btn").html('Dropdown <span class="caret caret-up"></span>');
+        });
+
+        // Replace text in dropdown with item selected
+
+        $(".dropdown-toggle").next(".dropdown-menu").children().on("click", function() {
+            $(this).closest(".dropdown-menu").prev(".dropdown-toggle").text($(this).text());
+        });
+
+    });
+</script>
+
+</body>
+</html>
