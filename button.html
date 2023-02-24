@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Bootstrap Button Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Button Methods</h2>
+    <h3>Example 01</h3>
+    <p>The <strong>loading</strong> method disables the button and changes the button text to "loading...".</p>
+    <p>The <strong>reset</strong> method changes the button text to its original text (if changed).</p>
+    <button id="loading_btn" type="button" class="btn btn-default">Button 01</button>
+    <h3>Example 02</h3>
+    <p>The <strong>toggle</strong> method makes the button look pressed".</p>
+    <button id="checkable_btn" type="button" class="btn btn-default">Button 02</button>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#loading_btn").click(function () {
+            $(this).button("loading").delay(500).queue(function () {
+                $(this).button("reset");
+                $(this).dequeue();
+            });
+        });
+        $("#checkable_btn").click(function () {
+            $(this).button("toggle");
+        });
+    });
+</script>
+</body>
+</html>
