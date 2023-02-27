@@ -45,15 +45,6 @@
 
     // Events
 
-    $(".btn-primary").click(function () {
-      $(".collapse").collapse('toggle');
-    });
-    $(".btn-success").click(function () {
-      $(".collapse").collapse('show');
-    });
-    $(".btn-warning").click(function () {
-      $(".collapse").collapse('hide');
-    });
     $(".collapse").on('show.bs.collapse', function () {
       alert('The collapsible content is about to be shown.');
     });
